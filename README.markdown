@@ -18,6 +18,11 @@ You'll need to install some X11 header files on some systems; e.g. on
 Ubuntu/Debian: `libx11-dev`, `libxcomposite-dev`, `libxdamage-dev`, and
 `libxrender-dev`.
 
+There is also a Docker container at [klo2k/find-cursor][d] if you want it. Note
+this is NOT maintained (or supported) by me. See #19.
+
+[d]: https://hub.docker.com/r/klo2k/find-cursor
+
 Usage
 -----
 
@@ -39,6 +44,16 @@ manager to launch `find-cursor` with that.
 
 I don't have a numpad on my keyboard; you can also use `F13` or some other
 unused key.
+
+You can use a little wrapper script if you want a "toggle" switch for when
+repeating forever:
+
+    #!/bin/sh
+    if pgrep find-cursor; then
+        pkill find-cursor
+    else
+        find-cursor -r0 &
+    fi
 
 Compton
 -------
